@@ -1,0 +1,36 @@
+import tkinter as tk
+from tkinter import ttk
+import random
+root = tk.Tk()
+root.title("Word Search Generator")
+root.geometry("400x400")
+
+word_label = ttk.Label(root, text="Enter Word:")
+word_label.pack()
+
+word_entry = ttk.Entry(root)
+word_entry.pack()
+
+grid_label = ttk.Label(root, text="Enter Grid Size:")
+grid_label.pack()
+
+grid_entry = ttk.Entry(root)
+grid_entry.pack()
+
+def generate_word_search():
+    word = word_entry.get()
+    grid_size = int(grid_entry.get())
+    grid = [[random.choice(['W','E']) for j in range(grid_size)] for i in range(grid_size)]
+    for i in range(grid_size):
+        for j in range(grid_size):
+            if grid[i][j] == 'W':
+                grid[i][j] = random.choice(['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','X','Y','Z'])
+    for i in range(grid_size):
+        for j in range(grid_size):
+            print(grid[i][j], end=' ')
+        print()
+    print()
+
+generate_button = ttk.Button(root, text="Generate", command=generate_word_search)
+generate_button.pack()
+root.mainloop()
